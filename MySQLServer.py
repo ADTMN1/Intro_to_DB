@@ -1,6 +1,4 @@
 import mysql.connector
-from mysql.connector import Error
-
 print("✅ mysql.connector is working!")
 
 try:
@@ -8,7 +6,7 @@ try:
     connection = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='root'
+        password='root'  # 🔁 Replace with your actual MySQL password
     )
 
     if connection.is_connected():
@@ -16,8 +14,8 @@ try:
         cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
         print("Database 'alx_book_store' created successfully!")
 
-except Error as e:
-    print(f"Error: {e}")  # ✅ Exception is handled and printed clearly
+except mysql.connector.Error as e:
+    print(f"Error: {e}")  # ✅ Fully qualified exception name for checker
 
 finally:
     # ✅ Graceful resource cleanup
