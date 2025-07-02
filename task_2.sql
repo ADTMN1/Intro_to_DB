@@ -1,16 +1,17 @@
+CREATE TABLE authors (
+  author_id INT PRIMARY KEY,
+  author_name VARCHAR(255) NOT NULL,
+  bio TEXT
+);
+
 CREATE TABLE books (
   book_id INT PRIMARY KEY,
   title VARCHAR(255) NOT NULL,
   author_id INT NOT NULL,
   published_date DATE,
   price DECIMAL(10, 2),
-  stock INT DEFAULT 0
-);
-
-CREATE TABLE authors (
-  author_id INT PRIMARY KEY,
-  author_name VARCHAR(255) NOT NULL,
-  bio TEXT
+  stock INT DEFAULT 0,
+  FOREIGN KEY (author_id) REFERENCES authors(author_id)
 );
 
 CREATE TABLE customers (
@@ -27,7 +28,7 @@ CREATE TABLE orders (
   FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
 
-CREATE TABLE `order details` (
+CREATE TABLE order_details (
   order_detail_id INT PRIMARY KEY,
   order_id INT NOT NULL,
   book_id INT NOT NULL,
